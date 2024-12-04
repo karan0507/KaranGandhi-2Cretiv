@@ -8,12 +8,13 @@
 
     <div style="margin-top: 16px;">
       <app-results-table
-        [contacts]="paginatedContacts"
+        [contacts]="contacts"
         [currentPage]="currentPage"
         [pageSize]="pageSize"
         [total]="total"
         (contactSelect)="onContactSelect($event)"
-        (pageIndexChange)="onPageIndexChange($event)">
+        (pageIndexChange)="onPageIndexChange($event)"
+        (pageSizeChange)="onPageSizeChange($event)">
       </app-results-table>
     </div>
   </nz-card>

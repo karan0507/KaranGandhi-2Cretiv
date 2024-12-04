@@ -7,52 +7,56 @@
     [nzTotal]="total"
     [nzFrontPagination]="true"
     (nzPageIndexChange)="onPageIndexChange($event)"
-    nzShowSizeChanger="true"
+    (nzPageSizeChange)="onPageSizeChange($event)"
+    [nzShowSizeChanger]="true"
+    [nzPageSizeOptions]="[5, 10, 20]"
     [nzScroll]="{ x: '100%' }"
     [nzBordered]="true"
     [nzSize]="'middle'">
     <thead>
       <tr>
+        <th [nzWidth]="'60px'">Select</th>
         <th>Name</th>
         <th>Date of Birth</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
         <th>Address</th>
         <th>City</th>
         <th>State</th>
         <th>Zip Code</th>
-        <th>Email Address</th>
-        <th nzRight>Phone Number</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let contact of contactTable.data"
-          (click)="onContactSelect(contact)"
-          [class.selected]="selectedContact?.id === contact.id">
+      <tr *ngFor="let contact of contactTable.data">
+        <td
+          [nzChecked]="selectedId === contact.id"
+          (nzCheckedChange)="onContactSelect(contact.id, $event)"
+        ></td>
         <td>{{ contact.firstName }} {{ contact.lastName }}</td>
-        <td>{{ contact.dateOfBirth }}</td>
+        <td>{{ contact.dateOfBirth | date:'MM/dd/yyyy' }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phoneNumber }}</td>
         <td>{{ contact.streetAddress }}</td>
         <td>{{ contact.city }}</td>
         <td>{{ contact.state }}</td>
         <td>{{ contact.zipCode }}</td>
-        <td>{{ contact.email }}</td>
-        <td nzRight>{{ contact.phoneNumber }}</td>
       </tr>
       <tr *ngIf="contacts.length === 0">
-        <td colspan="8" class="no-results">No contacts found</td>
+        <td colspan="9" class="no-results">No contacts found</td>
       </tr>
     </tbody>
   </nz-table>
 
   <nz-card *ngIf="selectedContact" class="contact-details">
     <nz-descriptions nzTitle="Contact Details" [nzColumn]="{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }">
-      <nz-descriptions-item nzTitle="First Name">{{ selectedContact.firstName }}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Last Name">{{ selectedContact.lastName }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Name">{{ selectedContact.firstName }} {{ selectedContact.lastName }}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Email">{{ selectedContact.email }}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Phone">{{ selectedContact.phoneNumber }}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Street Address">{{ selectedContact.streetAddress }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Date of Birth">{{ selectedContact.dateOfBirth | date:'MM/dd/yyyy' }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Address">{{ selectedContact.streetAddress }}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="City">{{ selectedContact.city }}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="State">{{ selectedContact.state }}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="ZIP Code">{{ selectedContact.zipCode }}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="Date of Birth">{{ selectedContact.dateOfBirth }}</nz-descriptions-item>
     </nz-descriptions>
   </nz-card>
 </div>

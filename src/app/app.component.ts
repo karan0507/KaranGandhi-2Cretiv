@@ -1,31 +1,32 @@
-import { Component } from '@angular/core';
-import { ClientApiService } from './client-api.service';
+import { Component, OnInit } from '@angular/core';
 import { Contact } from './models/contact.interface';
+import { ClientApiService } from './client-api.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   contacts: Contact[] = [];
+  currentPage = 1;
+  pageSize = 5;
+  total = 0;
   selectedContact: Contact | null = null;
   loading = false;
-  currentPage = 1;
-  pageSize = 10;
-  total = 0;
 
-  constructor(private clientApiService: ClientApiService) {
+  constructor(private clientApiService: ClientApiService) {}
+
+  ngOnInit() {
     this.loadContacts();
   }
 
-  loadContacts(searchCriteria: Partial<Contact> = {}): void {
+  loadContacts(searchCriteria: Partial<Contact> = {}) {
     this.loading = true;
     this.clientApiService.searchContacts(searchCriteria).subscribe({
-      next: (contacts) => {
-        this.contacts = contacts;
-        this.total = contacts.length;
-        this.currentPage = 1;
+      next: (data) => {
+        this.contacts = data;
+        this.total = data.length;
         this.selectedContact = null;
       },
       error: (error) => {
@@ -38,6 +39,7 @@ export class AppComponent {
   }
 
   onSearch(searchCriteria: Partial<Contact>): void {
+    this.currentPage = 1;
     this.loadContacts(searchCriteria);
   }
 
@@ -45,8 +47,13 @@ export class AppComponent {
     this.selectedContact = contact;
   }
 
-  onPageIndexChange(pageIndex: number): void {
-    this.currentPage = pageIndex;
+  onPageIndexChange(index: number): void {
+    this.currentPage = index;
+  }
+
+  onPageSizeChange(size: number): void {
+    this.pageSize = size;
+    this.currentPage = 1;
   }
 
   get paginatedContacts(): Contact[] {
