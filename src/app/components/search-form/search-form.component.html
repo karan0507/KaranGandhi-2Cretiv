@@ -96,13 +96,9 @@
       </div>
     </div>
     <!-- Buttons -->
-    <div nz-row nzJustify="end" style="margin-top: 24px;">
-      <button nz-button nzType="default" nzSize="large" (click)="resetForm()" [disabled]="loading">
-        Reset
-      </button>
-      <button nz-button nzType="primary" nzSize="large" type="submit" [nzLoading]="loading">
-        Search
-      </button>
+    <div class="button-container" style="margin-top: 16px;">
+      <button nz-button nzType="primary" nzSize="small" type="submit">Search</button>
+      <button nz-button nzType="default" nzSize="small" type="button" (click)="resetForm()">Reset</button>
     </div>
   </form>
 </div>

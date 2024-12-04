@@ -1,0 +1,9 @@
+.search-container {
+  padding: 24px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
