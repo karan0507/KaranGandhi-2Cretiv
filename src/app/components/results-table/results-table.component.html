@@ -1,0 +1,75 @@
+<div class="table-container">
+  <nz-table
+    #contactTable
+    [nzData]="contacts"
+    [nzPageIndex]="currentPage"
+    [nzPageSize]="pageSize"
+    [nzTotal]="total"
+    [nzFrontPagination]="false"
+    (nzPageIndexChange)="onPageIndexChange($event)"
+    nzShowSizeChanger="false">
+    <thead>
+      <tr>
+        <th *ngFor="let column of listOfColumns"
+            [nzSortOrder]="column.sortOrder"
+            [nzSortFn]="column.sortFn"
+            [nzSortDirections]="column.sortDirections">
+          {{ column.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contactTable.data"
+          (click)="onContactSelect(contact)"
+          [class.selected]="selectedContact?.id === contact.id">
+        <td>{{ contact.firstName }}</td>
+        <td>{{ contact.lastName }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phoneNumber }}</td>
+        <td>{{ contact.city }}</td>
+        <td>{{ contact.state }}</td>
+      </tr>
+      <tr *ngIf="contacts.length === 0">
+        <td colspan="6" class="no-results">No contacts found</td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <nz-card *ngIf="selectedContact" class="contact-details">
+    <nz-descriptions nzTitle="Contact Details" [nzColumn]="{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }">
+      <nz-descriptions-item nzTitle="First Name">{{ selectedContact.firstName }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Last Name">{{ selectedContact.lastName }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Email">{{ selectedContact.email }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Phone">{{ selectedContact.phoneNumber }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Street Address">{{ selectedContact.streetAddress }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="City">{{ selectedContact.city }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="State">{{ selectedContact.state }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="ZIP Code">{{ selectedContact.zipCode }}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Date of Birth">{{ selectedContact.dateOfBirth }}</nz-descriptions-item>
+    </nz-descriptions>
+  </nz-card>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button 
+      [disabled]="currentPage === 1"
+      (click)="onPageClick(currentPage - 1)"
+      class="page-button">
+      &lt;
+    </button>
+
+    <button 
+      *ngFor="let page of getPageNumbers()"
+      [class.active]="page === currentPage"
+      (click)="onPageClick(page)"
+      class="page-button">
+      {{page}}
+    </button>
+
+    <button 
+      [disabled]="currentPage === totalPages"
+      (click)="onPageClick(currentPage + 1)"
+      class="page-button">
+      &gt;
+    </button>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="search-container">
+  <h2>Search Contacts</h2>
+  
+  <form nz-form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
+        <nz-form-item>
+          <nz-form-label>First Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="firstName" placeholder="Enter first name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
+        <nz-form-item>
+          <nz-form-label>Last Name</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="lastName" placeholder="Enter last name" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
+        <nz-form-item>
+          <nz-form-label>Email</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="email" placeholder="Enter email" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
+        <nz-form-item>
+          <nz-form-label>Phone</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="phoneNumber" placeholder="Enter phone number" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
+        <nz-form-item>
+          <nz-form-label>City</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="city" placeholder="Enter city" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
+        <nz-form-item>
+          <nz-form-label>State</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="state" nzPlaceHolder="Select state">
+              <nz-option *ngFor="let state of states" 
+                        [nzValue]="state.value" 
+                        [nzLabel]="state.label">
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzJustify]="'end'" [nzGutter]="16" style="margin-top: 16px;">
+      <div nz-col>
+        <button nz-button nzType="default" (click)="resetForm()" [disabled]="loading">
+          Reset
+        </button>
+        <button nz-button nzType="primary" type="submit" [nzLoading]="loading" style="margin-left: 8px;">
+          Search
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,27 +1,88 @@
-# KaranGandhi2Cretiv
+# Contact Management Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.8.
+A modern Angular-based contact management system with advanced search and selection capabilities.
+
+## Features
+
+- Advanced contact search with multiple criteria
+- Real-time filtering
+- Checkbox-based contact selection
+- Detailed contact view
+- Responsive design
+- US States dropdown with search functionality
+
+## Technical Stack
+
+- Angular 15.2.10
+- NG-ZORRO Ant Design
+- RxJS for state management
+- Angular Reactive Forms
+
+## Prerequisites
+
+- Node.js (14.15.0 or higher)
+- npm (6.14.8 or higher)
+- Angular CLI (15.2.8)
+
+## Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Project Structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── search-form/
+│   │   └── results-table/
+│   ├── models/
+│   │   └── contact.interface.ts
+│   ├── client-api.service.ts
+│   ├── app.component.ts
+│   └── app.module.ts
+├── assets/
+└── styles.css
+```
 
-## Running end-to-end tests
+## Features Implementation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Search Form
+- Two-column layout for form fields
+- Required field validation
+- State dropdown with search capability
+- Date picker for Date of Birth
 
-## Further help
+### Results Table
+- Checkbox selection
+- Pagination
+- Responsive design
+- Sortable columns
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Contact Details
+- Detailed view of selected contact
+- Clean and organized layout
+- Responsive design
+
+## Usage
+
+1. Fill in the search criteria in the form
+2. Click "Search" to filter contacts
+3. Select contacts using checkboxes
+4. View detailed information of selected contact
+
+## Styling
+
+The application uses NG-ZORRO components with custom styling to ensure a modern and professional look. The design is fully responsive and works well on both desktop and mobile devices.

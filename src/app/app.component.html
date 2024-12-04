@@ -1,1 +1,22 @@
+<div class="app-container">
+  <nz-card>
+    <h1 nz-typography>Contact Management System</h1>
+    
+    <app-search-form
+      (search)="onSearch($event)">
+    </app-search-form>
 
+    <div style="margin-top: 16px;">
+      <app-results-table
+        [contacts]="paginatedContacts"
+        [currentPage]="currentPage"
+        [pageSize]="pageSize"
+        [total]="total"
+        (contactSelect)="onContactSelect($event)"
+        (pageIndexChange)="onPageIndexChange($event)">
+      </app-results-table>
+    </div>
+  </nz-card>
+
+  <nz-spin *ngIf="loading" nzTip="Loading..." class="loading-spinner"></nz-spin>
+</div>
