@@ -18,5 +18,7 @@
     </div>
   </nz-card>
 
-  <nz-spin *ngIf="loading" nzTip="Loading..." class="loading-spinner"></nz-spin>
+  <div *ngIf="loading" class="loading-spinner">
+    <nz-spin nzTip="Loading..."></nz-spin>
+  </div>
 </div>

@@ -1,77 +1,108 @@
 <div class="search-container">
   <h2>Search Contacts</h2>
   
-  <form nz-form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
-    <div nz-row [nzGutter]="16">
-      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
-        <nz-form-item>
-          <nz-form-label>First Name</nz-form-label>
-          <nz-form-control>
-            <input nz-input formControlName="firstName" placeholder="Enter first name" />
-          </nz-form-control>
-        </nz-form-item>
+  <form nz-form [formGroup]="searchForm" (ngSubmit)="onSubmit()" [nzLayout]="'vertical'">
+    <div nz-row [nzGutter]="24">
+      <!-- Left Section -->
+      <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+        <!-- Row 1: First Name, Last Name, DOB -->
+        <div nz-row [nzGutter]="16">
+          <div nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label>First Name</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="firstName" placeholder="First name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label>Last Name</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="lastName" placeholder="Last name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label>Date of Birth</nz-form-label>
+              <nz-form-control>
+                <nz-date-picker formControlName="dateOfBirth" nzFormat="MM/dd/yyyy" nzPlaceHolder="Select date"></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <!-- Row 2: Email, Phone -->
+        <div nz-row [nzGutter]="16">
+          <div nz-col [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-label>Email</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="email" placeholder="Email address" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-label>Phone</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="phoneNumber" placeholder="Phone number" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
       </div>
-
-      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
+      <!-- Right Section -->
+      <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+        <!-- Row 1: Street Address -->
         <nz-form-item>
-          <nz-form-label>Last Name</nz-form-label>
+          <nz-form-label>Street Address</nz-form-label>
           <nz-form-control>
-            <input nz-input formControlName="lastName" placeholder="Enter last name" />
+            <input nz-input formControlName="streetAddress" placeholder="Street address" />
           </nz-form-control>
         </nz-form-item>
-      </div>
-
-      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
-        <nz-form-item>
-          <nz-form-label>Email</nz-form-label>
-          <nz-form-control>
-            <input nz-input formControlName="email" placeholder="Enter email" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
-        <nz-form-item>
-          <nz-form-label>Phone</nz-form-label>
-          <nz-form-control>
-            <input nz-input formControlName="phoneNumber" placeholder="Enter phone number" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
-        <nz-form-item>
-          <nz-form-label>City</nz-form-label>
-          <nz-form-control>
-            <input nz-input formControlName="city" placeholder="Enter city" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8">
-        <nz-form-item>
-          <nz-form-label>State</nz-form-label>
-          <nz-form-control>
-            <nz-select formControlName="state" nzPlaceHolder="Select state">
-              <nz-option *ngFor="let state of states" 
-                        [nzValue]="state.value" 
-                        [nzLabel]="state.label">
-              </nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
+        <!-- Row 2: City, State, ZIP -->
+        <div nz-row [nzGutter]="16">
+          <div nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label>City</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="city" placeholder="City" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label>State</nz-form-label>
+              <nz-form-control>
+                <nz-select formControlName="state" nzPlaceHolder="Select state">
+                  <nz-option *ngFor="let state of states" 
+                            [nzValue]="state.value" 
+                            [nzLabel]="state.label">
+                  </nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label>ZIP Code</nz-form-label>
+              <nz-form-control>
+                <input nz-input formControlName="zipCode" placeholder="ZIP code" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div nz-row [nzJustify]="'end'" [nzGutter]="16" style="margin-top: 16px;">
-      <div nz-col>
-        <button nz-button nzType="default" (click)="resetForm()" [disabled]="loading">
-          Reset
-        </button>
-        <button nz-button nzType="primary" type="submit" [nzLoading]="loading" style="margin-left: 8px;">
-          Search
-        </button>
-      </div>
+    <!-- Buttons -->
+    <div nz-row nzJustify="end" style="margin-top: 24px;">
+      <button nz-button nzType="default" nzSize="large" (click)="resetForm()" [disabled]="loading">
+        Reset
+      </button>
+      <button nz-button nzType="primary" nzSize="large" type="submit" [nzLoading]="loading">
+        Search
+      </button>
     </div>
   </form>
 </div>

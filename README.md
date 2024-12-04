@@ -1,88 +1,100 @@
-# Contact Management Application
+# Contact Search Application
 
-A modern Angular-based contact management system with advanced search and selection capabilities.
+A modern contact search application built with Angular and ng-zorro-antd UI library.
 
 ## Features
 
-- Advanced contact search with multiple criteria
-- Real-time filtering
-- Checkbox-based contact selection
-- Detailed contact view
+- Multiple search filters (First Name, Last Name, Email, Phone, City, State)
+- Sortable table with pagination
+- Single contact selection with detailed view
 - Responsive design
-- US States dropdown with search functionality
-
-## Technical Stack
-
-- Angular 15.2.10
-- NG-ZORRO Ant Design
-- RxJS for state management
-- Angular Reactive Forms
+- Modern UI with ng-zorro components
 
 ## Prerequisites
 
-- Node.js (14.15.0 or higher)
-- npm (6.14.8 or higher)
-- Angular CLI (15.2.8)
+- Node.js (v14 or higher)
+- Angular CLI (v15)
+- npm package manager
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository:
+```bash
+git clone [repository-url]
+```
+
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── components/
-│   │   ├── search-form/
-│   │   └── results-table/
-│   ├── models/
-│   │   └── contact.interface.ts
-│   ├── client-api.service.ts
-│   ├── app.component.ts
-│   └── app.module.ts
-├── assets/
-└── styles.css
+```bash
+npm install
 ```
 
-## Features Implementation
+3. Start the development server:
+```bash
+ng serve
+```
 
-### Search Form
-- Two-column layout for form fields
-- Required field validation
-- State dropdown with search capability
-- Date picker for Date of Birth
-
-### Results Table
-- Checkbox selection
-- Pagination
-- Responsive design
-- Sortable columns
-
-### Contact Details
-- Detailed view of selected contact
-- Clean and organized layout
-- Responsive design
+4. Open your browser and navigate to `http://localhost:4200`
 
 ## Usage
 
-1. Fill in the search criteria in the form
-2. Click "Search" to filter contacts
-3. Select contacts using checkboxes
-4. View detailed information of selected contact
+1. Search Contacts:
+   - Use any combination of search filters
+   - Click "Search" to find matching contacts
+   - Click "Reset" to clear all filters
 
-## Styling
+2. View Results:
+   - Results are displayed in a sortable table
+   - Click column headers to sort
+   - Use pagination to navigate through results
 
-The application uses NG-ZORRO components with custom styling to ensure a modern and professional look. The design is fully responsive and works well on both desktop and mobile devices.
+3. View Contact Details:
+   - Click any row to view detailed contact information
+   - Details are displayed in a card below the table
+
+## Test Plan
+
+### Test Cases
+
+1. Search Functionality
+   - Test single field search
+   - Test multiple field search
+   - Test case-insensitive search
+   - Test partial matches
+   - Test with no results
+
+2. Table Functionality
+   - Test sorting (all columns)
+   - Test pagination
+   - Test row selection
+   - Test responsive layout
+
+3. Contact Details
+   - Test detail display accuracy
+   - Test UI updates on selection
+
+### Sample Data
+
+The application uses a JSON file containing sample contact data with the following structure:
+
+```typescript
+interface Contact {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  streetAddress: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  dateOfBirth: string;
+}
+```
+
+## Technologies Used
+
+- Angular 15
+- ng-zorro-antd
+- TypeScript
+- RxJS
+- HTML5/CSS3
